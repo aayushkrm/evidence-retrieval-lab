@@ -8,6 +8,8 @@ Research date: 19 November 2026. This is a targeted review of selected reports, 
 - [NVIDIA's 2027 AI agents and backend infrastructure internship](https://jobs.nvidia.com/careers/job/893398376165) describes backend services, agent reliability and evaluation, API design, databases, and software fundamentals. Its listing targets bachelor's or master's students.
 - [Toyota Research Institute's multi-agent research internship](https://jobs.lever.co/tri/86e6a285-bb0a-4e84-8bf9-bd498d45c33d) calls for controlled comparisons and measurements such as accuracy and compute; it is a doctoral role, so it illustrates technical direction rather than a broadly eligible internship.
 - The [2026 Stanford AI Index economy chapter](https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_4_economy.pdf) analyzes AI-related job postings. Such postings are not hires, the report's US figures do not represent every country, and skills can overlap.
+- The [World Economic Forum's 2025 skills outlook](https://www.weforum.org/publications/the-future-of-jobs-report-2025/3-skills-outlook) presents surveyed employers' expectations that AI, data, cybersecurity and technological literacy will grow in importance through 2030. It is a forecast of employer expectations, not a guaranteed outcome.
+- [McKinsey's 2026 AI survey](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai) reports adoption of tools ranging from chatbots to agents, with different levels of enterprise-wide scaling. This is self-reported survey evidence, not proof that any specific architecture will dominate.
 
 These sources support showing strong Python, measurable ML, evaluation and backend skills. They do not establish that one portfolio project will cause an offer.
 

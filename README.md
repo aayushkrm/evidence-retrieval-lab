@@ -46,17 +46,15 @@ For each judged query, the evaluator measures Recall@k, reciprocal rank, and nDC
 
 ## Current result and scope
 
-On the official 300-query test set, the fixed BM25 baseline achieved **Recall@10 0.788, MRR@10 0.631, and nDCG@10 0.663**. Excluding two queries with normalized-text matches in training gave Recall@10 0.790. These are retrieval scores, not answer-quality or claim-verification scores. See [the experiment card](docs/experiment.md) for the exact setup and limitations; add other systems only after measuring them.
+On the official 300-query test set, the fixed systems produced:
 
-On the 162-query development subset, the measured comparison was:
+| Method | Recall@10 | MRR@10 | nDCG@10 | Median query time |
+|---|---:|---:|---:|---:|
+| BM25 | 0.788 | 0.631 | 0.663 | 13.3 ms |
+| MiniLM dense | 0.783 | 0.605 | 0.645 | 16.6 ms |
+| Hybrid rank fusion | 0.814 | 0.646 | 0.683 | 32.0 ms |
 
-| Method | Recall@10 | nDCG@10 | Median query time |
-|---|---:|---:|---:|
-| BM25 | 0.824 | 0.711 | 14.6 ms |
-| MiniLM dense | 0.805 | 0.694 | 16.7 ms |
-| Hybrid rank fusion | 0.836 | 0.722 | 33.6 ms |
-
-The paired 95% bootstrap interval for hybrid minus BM25 Recall@10 was **−0.031 to +0.056**. This small development sample does not establish that hybrid is better, and the time figures exclude indexing. Dense and hybrid were not evaluated on the official test set in this run.
+The paired 95% query-bootstrap interval for hybrid minus BM25 Recall@10 was **+0.002 to +0.052**. For nDCG@10, the interval includes zero. These exploratory intervals do not account for multiple comparisons, dataset selection, or possible pretraining exposure; they are not proof of general improvement. Excluding the two normalized-text overlaps gave Recall@10 of 0.790 / 0.785 / 0.816 for BM25 / dense / hybrid. Query times exclude model loading and indexing. These are retrieval scores, not answer-quality or claim-verification scores. See [the experiment card](docs/experiment.md) for development results and the full setup.
 
 ## Data and licensing
 
