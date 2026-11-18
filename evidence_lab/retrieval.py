@@ -9,6 +9,7 @@ import math
 import os
 from pathlib import Path
 import re
+import sys
 import tempfile
 
 _TOKEN = re.compile(r"\w+", re.UNICODE)
@@ -138,7 +139,7 @@ class DenseIndex:
                     raise ValueError(f"Invalid dense embedding cache {cache_path}: {exc}") from exc
             else:
                 self.embeddings = self.model.encode(texts, batch_size=batch_size, normalize_embeddings=True,
-                                                    convert_to_numpy=True, show_progress_bar=False)
+                                                    convert_to_numpy=True, show_progress_bar=sys.stderr.isatty())
                 self._validate_embeddings(self.embeddings, len(self.ids), dimension, np)
                 if cache_path is not None:
                     temporary = None
