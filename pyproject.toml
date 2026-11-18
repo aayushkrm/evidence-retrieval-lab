@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evidence-retrieval-lab"
+version = "0.1.0"
+description = "Reproducible lexical and semantic retrieval experiments on BEIR SciFact"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dense = ["sentence-transformers==3.4.1", "transformers>=4.41,<4.49", "numpy>=1.26,<2"]
+
+[project.scripts]
+evidence-lab = "evidence_lab.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["evidence_lab*"]

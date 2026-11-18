@@ -1,0 +1,15 @@
+# Retrieval experiment card
+
+Dataset: [BEIR SciFact](https://github.com/beir-cellar/beir), based on the [SciFact project](https://github.com/allenai/scifact). The corpus contains paper titles and abstracts; the queries are scientific claims. The relevance labels indicate documents annotated for the retrieval task. Relevance is not the same as factual truth, clinical value, or answer quality. Unjudged items are treated as non-relevant, so incomplete judgments can penalize valid results.
+
+Development split: the evaluation script sorts official training query IDs, shuffles with Python's random seed 42, and selects 20% for development (162 queries in the checked source data). It does not train on the test set. The optional neural model is pretrained independently; we cannot guarantee it did not encounter related content or benchmark text during pretraining.
+
+First measured development baseline, 19 November 2026: BM25 k1=1.2, b=0.75, title plus abstract, lowercased Unicode word tokens, deterministic ID tie-breaks. At k=10, Recall 0.8241, MRR 0.6799 and nDCG 0.7109. On this developer's machine, sequential warmed search timing was roughly 23 ms median and 41 ms p95; this excludes index construction and is not a deployment SLO. Re-run for your environment. Individual query and input-hash details are produced locally by the evaluation command.
+
+With those settings fixed, the official 300-query test run produced Recall@10 0.7876, MRR@10 0.6309 and nDCG@10 0.6634. Excluding the two normalized-text overlaps gives 298 queries and Recall@10 0.7895, MRR@10 0.6318 and nDCG@10 0.6645. On an Intel Core i7-4770HQ, the test run measured sequential warmed query median 18.57 ms and p95 33.35 ms. This is one local run excluding indexing; it is not a performance guarantee.
+
+The measured source files had SHA-256 hashes: corpus `dec31c8182f3d744c7d2c09423756fd1d17cbef75808db13ba01cc0aab4d1ac6`; queries `8ff84a7c903f722981cd8d595c022660140c51867b27608a6d4910db86080313`; test qrels `0864bb985e0ca2367ba217977e72004d549054b2b06666ed9d4825ac7c21284c`; train qrels `a53f2114831916c096b6c37d9e54da68cef4efdcdbd5ed46533601af972acf1d`. The BM25 run used Python 3.11.15 and macOS 14.8.9.
+
+The official train/test split has two matching query pairs after case and whitespace normalization. Both pairs have identical relevant document IDs. A full test report must disclose them. The sensitivity analysis additionally excludes those test queries; it does not detect semantic paraphrases or prevent all pretraining contamination.
+
+Important limitations: one small scientific corpus, one query-level split, incomplete relevance judgments, long-document truncation for dense models, no access control, no online user evaluation, no generated answers, and no accuracy guarantee for new domains. No statistical or operational conclusion about deployed systems follows from this development baseline alone.
