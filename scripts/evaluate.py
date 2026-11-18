@@ -100,7 +100,11 @@ def main():
     if unknown_docs:
         raise ValueError(f"qrels refer to {len(unknown_docs)} missing documents")
     bm25 = BM25Index(corpus) if any(s in args.systems for s in ("bm25", "hybrid")) else None
-    dense = DenseIndex(corpus, model_name=args.model, revision=args.model_revision, cache_dir=args.cache_dir) if any(s in args.systems for s in ("dense", "hybrid")) else None
+    if any(s in args.systems for s in ("dense", "hybrid")):
+        print("Loading the neural model and corpus embeddings; first-time CPU encoding can take a long time.", file=sys.stderr, flush=True)
+        dense = DenseIndex(corpus, model_name=args.model, revision=args.model_revision, cache_dir=args.cache_dir)
+    else:
+        dense = None
     indexes = {"bm25": bm25, "dense": dense}
     if "hybrid" in args.systems:
         indexes["hybrid"] = HybridIndex(bm25, dense)

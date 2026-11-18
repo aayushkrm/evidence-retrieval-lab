@@ -48,6 +48,16 @@ For each judged query, the evaluator measures Recall@k, reciprocal rank, and nDC
 
 On the official 300-query test set, the fixed BM25 baseline achieved **Recall@10 0.788, MRR@10 0.631, and nDCG@10 0.663**. Excluding two queries with normalized-text matches in training gave Recall@10 0.790. These are retrieval scores, not answer-quality or claim-verification scores. See [the experiment card](docs/experiment.md) for the exact setup and limitations; add other systems only after measuring them.
 
+On the 162-query development subset, the measured comparison was:
+
+| Method | Recall@10 | nDCG@10 | Median query time |
+|---|---:|---:|---:|
+| BM25 | 0.824 | 0.711 | 14.6 ms |
+| MiniLM dense | 0.805 | 0.694 | 16.7 ms |
+| Hybrid rank fusion | 0.836 | 0.722 | 33.6 ms |
+
+The paired 95% bootstrap interval for hybrid minus BM25 Recall@10 was **−0.031 to +0.056**. This small development sample does not establish that hybrid is better, and the time figures exclude indexing. Dense and hybrid were not evaluated on the official test set in this run.
+
 ## Data and licensing
 
 The source dataset is SciFact ([original project](https://github.com/allenai/scifact)), distributed here through the [BEIR benchmark](https://github.com/beir-cellar/beir). This repository downloads the dataset rather than redistributing it. The original [SciFact license](https://github.com/allenai/scifact/blob/master/LICENSE.md) distinguishes claims and annotations from abstracts; the [AllenAI dataset card](https://huggingface.co/datasets/allenai/scifact) lists a different license. Review applicable rights before redistribution or commercial use; downloading does not resolve that discrepancy.
