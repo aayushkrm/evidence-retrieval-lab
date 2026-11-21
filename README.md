@@ -1,6 +1,8 @@
 # Evidence Retrieval Lab
 
-An offline workbench for measuring document retrieval. It compares keyword, neural and hybrid retrieval on the labeled [BEIR SciFact benchmark](https://github.com/beir-cellar/beir), and includes a small local search demo. The focus is **finding relevant documents**, not generating or verifying answers.
+An offline workbench for measuring document retrieval and searching your own text. It combines a versioned local document store, a passage-search API and dashboard, and experiments on the labeled [BEIR SciFact benchmark](https://github.com/beir-cellar/beir). The focus is **finding relevant documents**, not generating or verifying answers.
+
+**Measured outcome:** On 300 SciFact test queries, hybrid search obtained Recall@10 of 0.814 versus 0.788 for BM25. A separate exploratory passage experiment did not show a clear gain over full-document BM25 and was slower on this machine. These results concern document retrieval on one previously inspected benchmark, not answer accuracy or production performance.
 
 ```text
 SciFact corpus ──> BM25 ──────────────┐
@@ -9,7 +11,32 @@ SciFact corpus ──> BM25 ──────────────┐
                                          relevance judgments
                                                   ↓
                                   Recall / MRR / nDCG + paired analysis
+
+Your text ──> SQLite collection ──> versioned snapshot ──> passage BM25 ──> API / dashboard
 ```
+
+## Search your own documents
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e '.[service,test]'
+python -m evidence_lab.service
+```
+
+Open [localhost:8766](http://127.0.0.1:8766/). Create or select a collection, paste a JSON array of documents, and search. Each match includes the parent document ID and character offsets into its original text. The interactive API reference is at [localhost:8766/docs](http://127.0.0.1:8766/docs).
+
+The service stores documents in `data/workspace.sqlite3` by default; `EVIDENCE_LAB_DB` selects another local path. Updates and deletes are atomic. An optional `expected_generation` rejects stale writes with HTTP 409. A monotonically increasing generation identifies the snapshot used by each search; it is not a historical backup. The audit log records operation counts and times, not document text. The in-memory search index is rebuilt after a collection changes.
+
+```bash
+curl -s http://127.0.0.1:8766/v1/tenants/local/collections/notes/documents \
+  -H 'Content-Type: application/json' \
+  -d '{"documents":[{"id":"intro","title":"Example","text":"Solar panels convert sunlight to electricity."}]}'
+curl -s http://127.0.0.1:8766/v1/tenants/local/collections/notes/search \
+  -H 'Content-Type: application/json' -d '{"query":"sunlight"}'
+```
+
+The service is a **single-user local prototype**, not a secure multi-user deployment. Tenant names are namespaces, not authentication: any local caller can choose one. SQLite content is unencrypted. The default server binds to `127.0.0.1`; it checks Host and browser Origin, but has no user authentication, authorization, TLS, or production rate limiting. Do not expose it to a network or store sensitive documents without adding and reviewing those controls. Search accepts collections up to 2 MB of combined title and text; storage supports larger collections. Scores can include a title match, so an excerpt is not necessarily evidence for a claim.
 
 ## Run the local demo
 
@@ -32,6 +59,7 @@ For repeated dense searches or experiments, pass `--cache-dir cache` to the sear
 ## Reproduce an experiment
 
 ```bash
+pip install -e '.[service,test]'
 python -m scripts.evaluate --data data/scifact --split dev --systems bm25 --output results/dev-bm25.json
 # Optional: install the dense extra first.
 python -m scripts.evaluate --data data/scifact --split dev --systems bm25 dense hybrid --output results/dev-all.json
@@ -60,4 +88,4 @@ The paired 95% query-bootstrap interval for hybrid minus BM25 Recall@10 was **+0
 
 The source dataset is SciFact ([original project](https://github.com/allenai/scifact)), distributed here through the [BEIR benchmark](https://github.com/beir-cellar/beir). This repository downloads the dataset rather than redistributing it. The original [SciFact license](https://github.com/allenai/scifact/blob/master/LICENSE.md) distinguishes claims and annotations from abstracts; the [AllenAI dataset card](https://huggingface.co/datasets/allenai/scifact) lists a different license. Review applicable rights before redistribution or commercial use; downloading does not resolve that discrepancy.
 
-The [industry research](docs/industry-research.md) explains the project selection, current hiring evidence, alternative directions and limits. This is a research prototype, not a production service: it has no authentication, document permissions, tenant isolation, automatic evaluation, or live-corpus update pipeline.
+The [industry research](docs/industry-research.md) explains the project selection, current hiring evidence, alternative directions and limits. This remains a research prototype; it has no authentication, document permissions, automatic evaluation, or production deployment.
