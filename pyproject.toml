@@ -11,9 +11,14 @@ dependencies = []
 
 [project.optional-dependencies]
 dense = ["sentence-transformers==3.4.1", "transformers>=4.41,<4.49", "numpy>=1.26,<2"]
+service = ["fastapi>=0.110,<1", "pydantic>=2,<3", "uvicorn>=0.27,<1"]
+test = ["httpx>=0.27,<1"]
 
 [project.scripts]
 evidence-lab = "evidence_lab.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["evidence_lab*"]
+
+[tool.setuptools.package-data]
+evidence_lab = ["dashboard.html"]

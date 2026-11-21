@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidence Retrieval Lab · Workspace</title>
+<style>
+:root{font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#142e2b;background:#f1f4ef;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:wait}.shell{min-height:100vh;display:grid;grid-template-columns:260px minmax(0,1fr)}.sidebar{background:#112c29;color:#edf5e9;padding:32px 24px;display:flex;flex-direction:column;gap:32px}.brand{display:flex;align-items:center;gap:12px;font-weight:750;letter-spacing:-.02em}.brandmark{display:grid;place-items:center;width:36px;height:36px;border:1px solid #80aa98;border-radius:11px;color:#b9e4aa;font-size:20px}.sidebar small,.sidebar label{color:#b4cabe}.side-section{display:grid;gap:12px}.side-section label{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:700}.sidebar input{color:#fff;background:#1c3b36;border-color:#50726a}.sidebar button{background:#d6e9ca;color:#153c2e}.side-note{margin-top:auto;color:#b4cabe;font-size:13px;line-height:1.5}.side-note strong{display:block;color:#edf5e9;margin-bottom:6px}.main{padding:40px clamp(22px,5vw,70px) 70px;max-width:1510px;width:100%;margin:0 auto}.top{display:flex;justify-content:space-between;align-items:start;gap:24px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#50776b}.top h1{font-size:clamp(32px,4vw,48px);letter-spacing:-.045em;line-height:1.1;margin:10px 0}.sub{color:#5d716b;margin:0;line-height:1.55}.status-pill{border:1px solid #cbdcd0;padding:8px 12px;border-radius:999px;background:#f8fbf6;font-size:12px;font-weight:700;white-space:nowrap;color:#426655}.status-pill::before{content:"";display:inline-block;width:7px;height:7px;background:#7fae7a;border-radius:50%;margin-right:7px}.meta{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 18px}.chip{background:#e3ece2;border:1px solid #d6e3d5;border-radius:999px;padding:7px 12px;font-size:12px;color:#476459}.chip strong{color:#193e31}.grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(310px,.85fr);gap:18px;align-items:start}.stack{display:grid;gap:18px}.card{background:#fff;border:1px solid #dce5dc;border-radius:16px;box-shadow:0 5px 20px #1b3d2710;overflow:hidden}.card-head{padding:21px 23px 0;display:flex;align-items:start;justify-content:space-between;gap:12px}.card h2{font-size:17px;margin:0;letter-spacing:-.02em}.desc{font-size:13px;color:#70827a;line-height:1.5;margin:5px 0 0}.card-body{padding:20px 23px 23px}input,textarea{width:100%;border:1px solid #cbd9ce;border-radius:9px;background:#fbfcfa;color:#1b3730;padding:11px 12px;outline:none}input:focus,textarea:focus{border-color:#578c6e;box-shadow:0 0 0 3px #a8ceb550}textarea{resize:vertical;min-height:165px;font:12px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}.row{display:flex;gap:10px}.row input{min-width:0;flex:1}.btn{border:0;border-radius:9px;background:#225a42;color:#fff;font-size:13px;font-weight:750;padding:11px 16px;white-space:nowrap}.btn:hover{filter:brightness(1.08)}.secondary{background:#e7efe5;color:#285c44}.subtle{border:1px solid #d7e3d8;background:#fff;color:#436655}.small{font-size:12px;padding:8px 11px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.field-label{display:block;font-size:12px;font-weight:750;color:#526f61;margin:0 0 8px}.helper{font-size:12px;color:#73847b;margin:9px 0 0;line-height:1.5}.result-list{display:grid;gap:12px;margin-top:18px}.empty{border:1px dashed #d6e1d7;background:#f9fbf8;border-radius:12px;padding:30px 20px;text-align:center;color:#71847a;font-size:13px;line-height:1.6}.result{border:1px solid #e1e9e0;border-radius:12px;padding:16px;background:#fcfdfb}.result-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.result h3{font-size:15px;margin:0;color:#183b2e;overflow-wrap:anywhere}.rank{font:700 11px ui-monospace,monospace;color:#5c8a6d;white-space:nowrap}.passage{color:#42584f;font-size:13px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;margin:11px 0}.provenance{font:11px/1.55 ui-monospace,monospace;color:#6c8175;overflow-wrap:anywhere;border-top:1px solid #e5ede5;padding-top:10px}.audit{display:grid;gap:8px}.event{font-size:12px;color:#5f746a;padding:10px 12px;border-radius:8px;background:#f5f8f4;overflow-wrap:anywhere}.message{margin:14px 0 0;font-size:13px;min-height:20px;color:#48675a}.message.error{color:#a64034}.footer{color:#839189;font-size:12px;margin-top:24px;line-height:1.6}@media(max-width:1050px){.grid{grid-template-columns:1fr}}@media(max-width:700px){.shell{grid-template-columns:1fr}.sidebar{padding:20px;gap:16px}.side-section{grid-template-columns:1fr 1fr;align-items:end}.side-section label{grid-column:1/-1}.side-note{display:none}.main{padding:28px 18px 50px}.top{display:block}.status-pill{display:inline-block;margin-top:16px}.row{flex-wrap:wrap}.row .btn{width:100%}}
+</style>
+</head>
+<body><div class="shell">
+<aside class="sidebar"><div class="brand"><span class="brandmark" aria-hidden="true">⌕</span><span>Evidence Lab</span></div>
+<form id="scope-form" class="side-section"><label for="tenant">Workspace</label><input id="tenant" value="local" placeholder="Tenant name" required maxlength="64" aria-label="Workspace name"><input id="collection" value="research" list="collection-list" placeholder="Collection name" required maxlength="64" aria-label="Collection name"><datalist id="collection-list"></datalist><button class="btn" type="submit">Open collection</button></form>
+<div class="side-note"><strong>Local prototype</strong>Workspace names organize data. They do not provide authentication or access control.</div></aside>
+<main class="main"><header class="top"><div><div class="eyebrow">Research workspace / Retrieval</div><h1>Find the right passage.</h1><p class="sub">Add documents, search their text, and trace each match back to its source.</p></div><span class="status-pill">Local workspace</span></header>
+<div class="meta"><span class="chip">Workspace <strong id="scope-label">—</strong></span><span class="chip">Documents <strong id="doc-count">—</strong></span><span class="chip">Generation <strong id="generation">—</strong></span></div>
+<div class="grid"><div class="stack"><section class="card"><div class="card-head"><div><h2>Search documents</h2><p class="desc">Ranked keyword matches across document passages.</p></div></div><div class="card-body"><form id="search-form"><label class="field-label" for="query">Your query</label><div class="row"><input id="query" maxlength="500" placeholder="What are you looking for?" required><button class="btn" type="submit">Search passages</button></div></form><p class="helper" id="search-meta">Search returns up to 10 parent documents.</p><div id="results" class="result-list" aria-live="polite"><div class="empty">Your results will appear here.<br>Each result includes its document and character offsets.</div></div></div></section>
+<section class="card"><div class="card-head"><div><h2>Recent changes</h2><p class="desc">Changes to the selected collection.</p></div><button id="refresh-audit" class="btn subtle small" type="button">Refresh</button></div><div class="card-body"><div id="audit" class="audit"><div class="empty">No changes yet.</div></div></div></section></div>
+<div class="stack"><section class="card"><div class="card-head"><div><h2>Add or update documents</h2><p class="desc">Paste a JSON array. An existing ID updates that document.</p></div></div><div class="card-body"><form id="ingest-form"><label class="field-label" for="documents">Document JSON</label><textarea id="documents" spellcheck="false" required>[
+  {
+    "id": "doc-1",
+    "title": "Example title",
+    "text": "Replace this with your document text."
+  }
+]</textarea><div class="actions"><button class="btn" type="submit">Save documents</button></div><p class="helper">Each item needs an <code>id</code> and <code>text</code>; <code>title</code> is optional. Saving creates the collection if needed.</p></form></div></section>
+<section class="card"><div class="card-head"><div><h2>Delete documents</h2><p class="desc">Remove documents by ID from this collection.</p></div></div><div class="card-body"><form id="delete-form"><label class="field-label" for="delete-ids">One document ID per line</label><textarea id="delete-ids" style="min-height:90px" placeholder="doc-1&#10;doc-2" required></textarea><div class="actions"><button class="btn subtle" type="submit">Delete listed IDs</button></div></form></div></section></div></div>
+<p id="message" class="message" role="status" aria-live="polite"></p><p class="footer">Results are ranked text matches, not verified evidence. Character offsets use Python string indices in the original document.</p></main></div>
+<script>
+'use strict';
+const el = id => document.getElementById(id);
+let selected = null;
+let generation = null;
+let scopeVersion = 0;
+let searchVersion = 0;
+function message(text, error = false) { el('message').textContent = text; el('message').classList.toggle('error', error); }
+function node(tag, className, text) { const n = document.createElement(tag); if (className) n.className = className; n.textContent = text; return n; }
+function clear(element) { element.replaceChildren(); }
+function base(scope = selected) { if (!scope) throw new Error('Open a collection first.'); return '/v1/tenants/' + encodeURIComponent(scope.tenant) + '/collections/' + encodeURIComponent(scope.collection); }
+async function request(url, options = {}) {
+  const response = await fetch(url, options); let payload;
+  try { payload = await response.json(); } catch (_) { throw new Error('The server returned an unreadable response.'); }
+  if (!response.ok) { const detail = typeof payload.detail === 'string' ? payload.detail : JSON.stringify(payload.detail || payload); throw new Error('Request failed (' + response.status + '): ' + detail); }
+  return payload;
+}
+function advanceGeneration(next) {
+  if (generation !== null && next < generation) return false;
+  if (generation !== null && next > generation) {
+    clear(el('results')); el('results').appendChild(node('div', 'empty', 'Collection changed. Run the search again.'));
+    el('search-meta').textContent = 'Collection changed; previous results were cleared.';
+    el('doc-count').textContent = '—';
+  }
+  generation = next; el('generation').textContent = String(next); return true;
+}
+function updateInfo(data) { if (!advanceGeneration(data.generation)) return false; el('doc-count').textContent = String(data.document_count); return true; }
+async function refreshInfo(version = scopeVersion, scope = selected) { const data = await request(base(scope)); if (version === scopeVersion) updateInfo(data); }
+async function refreshCollections(scope = selected, version = scopeVersion) {
+  const data = await request('/v1/tenants/' + encodeURIComponent(scope.tenant) + '/collections');
+  if (version !== scopeVersion) return;
+  const list = el('collection-list'); clear(list); for (const item of data.collections) { const option = document.createElement('option'); option.value = item.name; list.appendChild(option); }
+}
+async function refreshAudit(version = scopeVersion, scope = selected) {
+  const data = await request(base(scope) + '/audit?limit=10'); if (version !== scopeVersion) return;
+  const view = el('audit'); clear(view); if (!data.events.length) { view.appendChild(node('div', 'empty', 'No changes yet.')); return; }
+  for (const event of data.events) view.appendChild(node('div', 'event', 'Generation ' + event.generation + ' · ' + event.operation + ' · ' + event.changed + ' changed · ' + event.created_at));
+}
+async function openScope(event) {
+  if (event) event.preventDefault();
+  const proposed = {tenant: el('tenant').value.trim(), collection: el('collection').value.trim()};
+  const version = ++scopeVersion; selected = null; generation = null;
+  el('scope-label').textContent = '—'; el('doc-count').textContent = '—'; el('generation').textContent = '—';
+  clear(el('results')); el('results').appendChild(node('div', 'empty', 'Open a collection, then search its documents.'));
+  clear(el('audit')); el('audit').appendChild(node('div', 'empty', 'No changes yet.'));
+  try { const info = await request(base(proposed)); if (version !== scopeVersion) return; selected = proposed; updateInfo(info); el('scope-label').textContent = proposed.tenant + ' / ' + proposed.collection; message('Collection opened.'); await Promise.all([refreshCollections(proposed, version), refreshAudit(version, proposed)]); }
+  catch (error) { if (version === scopeVersion) message(error.message, true); }
+}
+async function mutate(path, body, verb) {
+  if (!selected || generation === null) throw new Error('Open a collection first.');
+  const scope = selected, version = scopeVersion;
+  body.expected_generation = generation;
+  const data = await request(base(scope) + path, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
+  if (version !== scopeVersion) return;
+  advanceGeneration(data.generation);
+  await Promise.all([refreshInfo(version, scope), refreshCollections(scope, version), refreshAudit(version, scope)]);
+  if (version === scopeVersion) message(verb + ': ' + data.changed + ' document(s) changed.');
+}
+el('scope-form').addEventListener('submit', openScope);
+el('search-form').addEventListener('submit', async event => {
+  event.preventDefault(); const version = scopeVersion, scope = selected, currentSearch = ++searchVersion;
+  try { const data = await request(base(scope) + '/search', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({query:el('query').value, limit:10})}); if (version !== scopeVersion || currentSearch !== searchVersion) return;
+    if (!updateInfo(data)) { message('Search used an older collection generation. Please search again.'); return; } const view = el('results'); clear(view);
+    el('search-meta').textContent = data.results.length + ' document(s) · ' + data.elapsed_ms + ' ms · generation ' + data.generation;
+    if (!data.results.length) view.appendChild(node('div', 'empty', 'No matching documents. Try different terms.'));
+    data.results.forEach((result, i) => { const article = node('article', 'result', ''); const top = node('div', 'result-top', ''); top.appendChild(node('h3', '', result.title || 'Untitled document')); top.appendChild(node('span', 'rank', '#' + String(i + 1).padStart(2, '0') + ' · ' + Number(result.score).toFixed(3))); article.appendChild(top); article.appendChild(node('p', 'passage', result.text)); article.appendChild(node('div', 'provenance', 'Document ' + result.parent_id + ' · characters ' + result.start_char + '–' + result.end_char + ' (end exclusive)\nPassage ' + result.passage_id)); view.appendChild(article); }); message('Search complete.');
+  } catch (error) { if (version === scopeVersion) message(error.message, true); }
+});
+el('ingest-form').addEventListener('submit', async event => { event.preventDefault(); try { const documents = JSON.parse(el('documents').value); if (!Array.isArray(documents)) throw new Error('Document JSON must be an array.'); await mutate('/documents', {documents}, 'Saved'); } catch(error) { message(error.message, true); } });
+el('delete-form').addEventListener('submit', async event => { event.preventDefault(); try { const ids = el('delete-ids').value.split(/\r?\n/).map(x => x.trim()).filter(Boolean); if (!ids.length) throw new Error('Enter at least one document ID.'); await mutate('/delete', {ids}, 'Deleted'); } catch(error) { message(error.message, true); } });
+el('refresh-audit').addEventListener('click', async () => { try { await refreshAudit(); message('Changes refreshed.'); } catch(error) { message(error.message, true); } });
+openScope();
+</script></body></html>
