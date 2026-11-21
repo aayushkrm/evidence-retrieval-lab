@@ -19,3 +19,14 @@ The measured source files had SHA-256 hashes: corpus `dec31c8182f3d744c7d2c09423
 The official train/test split has two matching query pairs after case and whitespace normalization. Both pairs have identical relevant document IDs. A full test report must disclose them. The sensitivity analysis additionally excludes those test queries; it does not detect semantic paraphrases or prevent all pretraining contamination.
 
 Important limitations: one small scientific corpus, one query-level split, incomplete relevance judgments, long-document truncation for dense models, no access control, no online user evaluation, no generated answers, and no accuracy guarantee for new domains. No statistical or operational conclusion about deployed systems follows from this development baseline alone.
+
+## Exploratory passage comparison
+
+After the original test results had been inspected, we compared the new passage pipeline with document BM25 on the same 300 SciFact test queries. This is **exploratory reuse**, not a fresh held-out validation. Passages use 180-word windows with 30-word overlap; title text is indexed only for the first passage. We score all matched passages and aggregate each document by its best passage. Both methods use fixed BM25 settings and the same document-level relevance judgments. Reproduce with `python -m scripts.evaluate_passages --final-test --output results/passage-test-exploratory.json` after downloading the dataset.
+
+| Method | Recall@10 | MRR@10 | nDCG@10 | Median / p95 query time |
+|---|---:|---:|---:|---:|
+| Document BM25 | 0.7876 | 0.6309 | 0.6634 | 12.88 / 21.51 ms |
+| Passage BM25 | 0.7830 | 0.6311 | 0.6619 | 40.17 / 54.38 ms |
+
+The paired query-bootstrap 95% interval for passage minus document Recall@10 was [−0.0168, +0.0067]; for nDCG@10 it was [−0.0151, +0.0121]. Neither comparison establishes an improvement. This run indexed 5,183 documents and 8,424 passages; document index build took 0.83 seconds versus 1.54 seconds for passage creation plus indexing. Timings are one local sequential run and exclude network and API overhead. The document labels do **not** judge whether a particular passage is relevant or supports a claim. Evaluating citations requires separate passage-level labels.
