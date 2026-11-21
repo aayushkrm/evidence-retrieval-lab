@@ -24,7 +24,7 @@ pip install -e '.[service,test]'
 python -m evidence_lab.service
 ```
 
-Open [localhost:8766](http://127.0.0.1:8766/). Create or select a collection, paste a JSON array of documents, and search. Each match includes the parent document ID and character offsets into its original text. The interactive API reference is at [localhost:8766/docs](http://127.0.0.1:8766/docs).
+Open [localhost:8766](http://127.0.0.1:8766/). Create or select a collection, paste a JSON array of documents, and search. Each match includes the parent document ID and character offsets into its original text. The interactive API reference is at [localhost:8766/docs](http://127.0.0.1:8766/docs); its Swagger UI assets may require an internet connection.
 
 The service stores documents in `data/workspace.sqlite3` by default; `EVIDENCE_LAB_DB` selects another local path. Updates and deletes are atomic. An optional `expected_generation` rejects stale writes with HTTP 409. A monotonically increasing generation identifies the snapshot used by each search; it is not a historical backup. The audit log records operation counts and times, not document text. The in-memory search index is rebuilt after a collection changes.
 
